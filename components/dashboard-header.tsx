@@ -2,7 +2,7 @@ import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { createBrowserClient } from "@supabase/auth-helpers-nextjs"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
@@ -30,7 +30,7 @@ export function DashboardHeader({ memberData }: DashboardHeaderProps) {
   const [isSigningOut, setIsSigningOut] = useState(false)
   const router = useRouter()
   const { toast } = useToast()
-  const supabase = createClientComponentClient()
+  const supabase = createBrowserClient()
   
   // Check if user has admin access
   const isAdmin = memberData?.role === "Administrator" || memberData?.role === "Session Incharge" || memberData?.role === "Vice President" || memberData?.role === "President"
