@@ -1,6 +1,6 @@
 # 🎓 MySGC — Student Guidance Cell Portal
 
-[![Deployed on Cloudflare](https://img.shields.io/badge/Deployed-Cloudflare-F38020?logo=cloudflare&logoColor=white)](https://sgc-cahcet.pages.dev)
+[![portal.teamsgc.in](https://img.shields.io/badge/Live-portal.teamsgc.in-0051FF?logo=cloudflare&logoColor=white)](https://portal.teamsgc.in)
 
 > **One stop for everything SGC.** Track attendance, review sessions, submit feedback, propose topics — all in one place. Built by students, for students.
 
@@ -70,6 +70,15 @@ npm run dev                   # 🎉 open http://localhost:3000
 ```
 
 See [docs/SETUP.md](./docs/SETUP.md) for the full Supabase walkthrough.
+
+---
+
+## 🌐 Live
+
+| Link                              | Type            |
+| --------------------------------- | --------------- |
+| [mysgc.pages.dev](https://mysgc.pages.dev) | Cloudflare-provided |
+| [portal.teamsgc.in](https://portal.teamsgc.in) | Custom domain         |
 
 ---
 
