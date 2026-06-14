@@ -1,6 +1,7 @@
 # 🎓 MySGC — Student Guidance Cell Portal
 
 [![portal.teamsgc.in](https://img.shields.io/badge/Live-portal.teamsgc.in-0051FF?logo=cloudflare&logoColor=white)](https://portal.teamsgc.in)
+[![Download APK](https://img.shields.io/badge/Download-APK-00C853?style=flat&logo=android&logoColor=white)](apk-files/mysgc.apk)
 
 > **One stop for everything SGC.** Track attendance, review sessions, submit feedback, propose topics — all in one place. Built by students, for students.
 
