@@ -1,80 +1,90 @@
-# MySGC — Student Guidance Cell Portal
+# 🎓 MySGC — Student Guidance Cell Portal
 
 [![Deployed on Cloudflare](https://img.shields.io/badge/Deployed-Cloudflare-F38020?logo=cloudflare&logoColor=white)](https://sgc-cahcet.pages.dev)
 
-A member portal for the **Student Guidance Cell (SGC)** at **CAHCET**. Members can track attendance, view sessions, submit feedback, propose topics, and admins can manage the full session lifecycle.
+> **One stop for everything SGC.** Track attendance, review sessions, submit feedback, propose topics — all in one place. Built by students, for students.
+
+A member portal for the **Student Guidance Cell (SGC)** at **CAHCET**. Members stay on top of their sessions and attendance, while admins manage the full session lifecycle with ease.
 
 ---
 
-## Tech Stack
+## 🧰 Tech Stack
 
 | Layer     | Technology                                                    |
 | --------- | ------------------------------------------------------------- |
-| Framework | [Next.js 15](https://nextjs.org/) (App Router, React 18)     |
-| Language  | TypeScript (strict)                                           |
-| Styling   | Tailwind CSS 3.4 + [shadcn/ui](https://ui.shadcn.com/)       |
-| Database  | PostgreSQL via [Supabase](https://supabase.com)               |
-| Auth      | Supabase Auth (PKCE flow, email/password)                     |
-| Hosting   | [Cloudflare Pages](https://pages.cloudflare.com/)             |
+| ⚛️        | [Next.js 15](https://nextjs.org/) + React 18                  |
+| 🟦        | TypeScript (strict)                                           |
+| 🎨        | Tailwind CSS 3.4 + [shadcn/ui](https://ui.shadcn.com/)       |
+| 🗄️        | PostgreSQL via [Supabase](https://supabase.com)               |
+| 🔐        | Supabase Auth (PKCE flow, email/password)                     |
+| ☁️        | [Cloudflare Pages](https://pages.cloudflare.com/)             |
 
 ---
 
-## Features
+## ✨ Features
 
-### Member
+### 👤 Member
 
-- **Attendance** — Monthly summary with present/absent tracking and percentages.
-- **Sessions** — View today's and upcoming sessions with handler & co-handler.
-- **Feedback** — Rate and comment on today's sessions (1:30 PM – 11:59 PM IST).
-- **Propose a Session** — Submit session interest with topic, type, date, and optional co-handler.
-- **Session History** — Browse past sessions with feedback and ratings.
-- **Password Management** — Change password and forgot password flow.
-- **PWA** — Installable as a Progressive Web App.
+| Feature                 | What it does                                                              |
+| ----------------------- | ------------------------------------------------------------------------- |
+| 📊 **Attendance**       | Monthly summary — see your present days, absent dates, and percentage.    |
+| 📅 **Sessions**         | Today's and upcoming sessions with handler & co-handler details.          |
+| ⭐ **Feedback**         | Rate and review today's sessions (available 1:30 PM – 11:59 PM IST).      |
+| ✋ **Propose a Session**| Pitch a topic, pick a date, and optionally add a co-handler.              |
+| 📜 **Session History**  | Browse every past session you've attended with feedback and ratings.      |
+| 🔑 **Password Mgmt**    | Change password or reset it via email.                                    |
+| 📱 **PWA**              | Install it on your phone like a native app.                               |
 
-### Admin
+### 🛡️ Admin
 
-Role required: `President`, `Vice President`, `Administrator`, or `Session Incharge`.
+> Requires one of these roles: `President`, `Vice President`, `Administrator`, or `Session Incharge`.
 
-- **Pending Approvals** — View, approve, reject, or reschedule session requests.
-- **Approved Sessions** — Paginated list (10/page) with search by topic, handler, or date.
-- **Feedback** — View average rating and individual comments per session.
-- **Manage Sessions** — Delete sessions or add them manually.
-- **Conflict Detection** — Prevents double-booking dates.
-
----
-
-## Documentation
-
-| Topic                           | Link                              |
-| ------------------------------- | --------------------------------- |
-| Setup & configuration           | [docs/SETUP.md](./docs/SETUP.md)                |
-| Architecture & database schema  | [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)  |
-| Cloudflare deployment           | [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md)      |
-| Contributing guide              | [CONTRIBUTING.md](./CONTRIBUTING.md)            |
-| Code of conduct                 | [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)      |
+| Feature                          | What it does                                                            |
+| -------------------------------- | ----------------------------------------------------------------------- |
+| ✅ **Pending Approvals**         | Review, approve, reject, or reschedule session requests.                |
+| 📄 **Approved Sessions**         | Paginated list (10/page) with live search by topic, handler, or date.   |
+| 💬 **View Feedback**             | See average ratings and individual comments for any session.            |
+| 🗑️ **Manage Sessions**           | Delete sessions or add them manually without a prior request.           |
+| ⚠️ **Conflict Detection**        | Automatically warns when a date is already booked.                      |
 
 ---
 
-## Quick Start
+## 📖 Documentation
+
+| What                         | Where                          |
+| ---------------------------- | ------------------------------ |
+| 🛠️ Setup & configuration    | [docs/SETUP.md](./docs/SETUP.md) |
+| 🏗️ Architecture & database  | [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) |
+| 🚀 Cloudflare deployment    | [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md) |
+| 🤝 Contributing guide       | [CONTRIBUTING.md](./CONTRIBUTING.md) |
+| 📜 Code of conduct          | [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) |
+
+---
+
+## 🚀 Quick Start
 
 ```bash
 npm install
-cp .env.example .env.local   # fill in your Supabase credentials
-npm run dev                   # → http://localhost:3000
+cp .env.example .env.local   # drop in your Supabase credentials
+npm run dev                   # 🎉 open http://localhost:3000
 ```
 
-See [docs/SETUP.md](./docs/SETUP.md) for full Supabase setup and configuration details.
+See [docs/SETUP.md](./docs/SETUP.md) for the full Supabase walkthrough.
 
 ---
 
-## Meet the Contributors
+## 🌟 Meet the Contributors
 
 [![Contributors](https://contrib.rocks/image?repo=sgc-cahcet/mysgc)](https://github.com/sgc-cahcet/mysgc/graphs/contributors)
 
-Built and maintained by **Student Guidance Cell — CAHCET**.
+**Want your picture here?** 🖼️  
+Fork the repo, send a PR, and become a contributor!  
+Check out the [Contributing Guide](./CONTRIBUTING.md) to get started.
+
+Built and maintained with ❤️ by **Student Guidance Cell — CAHCET**.
 
 ---
 
-## License
+## 📄 License
 
 [MIT](./LICENSE)
