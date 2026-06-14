@@ -73,6 +73,16 @@ See [docs/SETUP.md](./docs/SETUP.md) for the full Supabase walkthrough.
 
 ---
 
+## 📲 Android App
+
+[![Download APK](https://img.shields.io/badge/Download-APK-00C853?style=for-the-badge&logo=android&logoColor=white)](apk-files/mysgc.apk)
+
+Download the MySGC Android app (`mysgc.apk`) — install it on your device for quick access.
+
+> 📱 Android only. Allows side-loading from unknown sources.
+
+---
+
 ## 🌐 Live
 
 | Link                              | Type            |
