@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState, useEffect } from "react"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { createBrowserClient } from "@supabase/auth-helpers-nextjs"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -37,7 +37,7 @@ export function SessionInterestForm({ memberId }: SessionInterestFormProps) {
   const [currentMonth, setCurrentMonth] = useState(new Date())
   const [showCalendar, setShowCalendar] = useState(false)
   const { toast } = useToast()
-  const supabase = createClientComponentClient()
+  const supabase = createBrowserClient()
 
   useEffect(() => {
     fetchBookedDates()

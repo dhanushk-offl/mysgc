@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState } from "react"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { createBrowserClient } from "@supabase/auth-helpers-nextjs"
 import {
     Dialog,
     DialogContent,
@@ -247,7 +247,7 @@ export function ForgotPasswordDialog({ onOpen }: { onOpen?: () => void }) {
     const submittingRef = useRef(false)
 
     const isMobile = useIsMobile()
-    const supabase = createClientComponentClient()
+    const supabase = createBrowserClient()
     const { toast } = useToast()
     const router = useRouter()
 

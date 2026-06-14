@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { createBrowserClient } from "@supabase/auth-helpers-nextjs"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useToast } from "@/hooks/use-toast"
@@ -24,7 +24,7 @@ export function SessionsCard() {
   const [loading, setLoading] = useState(true)
   const [, setCurrentDate] = useState("")
   const { toast } = useToast()
-  const supabase = createClientComponentClient()
+  const supabase = createBrowserClient()
 
   useEffect(() => {
     const syncSessions = () => {

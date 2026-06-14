@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { createBrowserClient } from "@supabase/auth-helpers-nextjs"
 import { useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -16,6 +16,15 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { CheckCircle, AlertCircle, Plus, Calendar } from "lucide-react"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
 import type { MemberData, SessionInterest, Feedback, SessionWithFeedback } from "@/lib/session-types"
 import { getCurrentDateInTimeZone } from "@/lib/date-utils"
 
@@ -67,6 +76,28 @@ export default function AdminPage() {
   const [rescheduleSession, setRescheduleSession] = useState<SessionInterest | null>(null)
   const [newDate, setNewDate] = useState("")
 
+  const APPROVED_PAGE_SIZE = 10
+  const [currentApprovedPage, setCurrentApprovedPage] = useState(1)
+
+  const approvedSessions = sessionInterests.filter((interest) => interest.is_approved)
+  const totalApprovedPages = Math.max(1, Math.ceil(approvedSessions.length / APPROVED_PAGE_SIZE))
+  const paginatedApprovedSessions = approvedSessions.slice(
+    (currentApprovedPage - 1) * APPROVED_PAGE_SIZE,
+    currentApprovedPage * APPROVED_PAGE_SIZE,
+  )
+
+  const handleApprovedPageChange = (page: number) => {
+    setCurrentApprovedPage(page)
+    const approvedTab = document.getElementById("approved-tab-trigger")
+    approvedTab?.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
+
+  useEffect(() => {
+    if (currentApprovedPage > totalApprovedPages) {
+      setCurrentApprovedPage(totalApprovedPages)
+    }
+  }, [approvedSessions.length])
+
   // Manual session form states
   const [manualMemberId, setManualMemberId] = useState("")
   const [manualHandlerCount, setManualHandlerCount] = useState("1")
@@ -78,7 +109,7 @@ export default function AdminPage() {
   const [isSubmittingManual, setIsSubmittingManual] = useState(false)
 
   const router = useRouter()
-  const supabase = createClientComponentClient()
+  const supabase = createBrowserClient()
 
   const getHandlersLabel = (primaryName?: string | null, coHandlerName?: string | null) => {
     return coHandlerName ? `${primaryName} & ${coHandlerName}` : primaryName || "Unassigned"
@@ -703,27 +734,88 @@ export default function AdminPage() {
                 <CardTitle>Approved Sessions</CardTitle>
               </CardHeader>
               <CardContent>
-                {sessionInterests.filter((interest) => interest.is_approved).length > 0 ? (
+                {approvedSessions.length > 0 ? (
                   <div className="space-y-4">
-                    {sessionInterests
-                      .filter((interest) => interest.is_approved)
-                      .map((interest) => {
-                        const sessionWithFeedback = sessionsWithFeedback.find((s) => s.id === interest.id)
-                        const feedbackCount = sessionWithFeedback?.feedback.length || 0
+                    {paginatedApprovedSessions.map((interest) => {
+                      const sessionWithFeedback = sessionsWithFeedback.find((s) => s.id === interest.id)
+                      const feedbackCount = sessionWithFeedback?.feedback.length || 0
 
-                        return (
-                          <SessionInterestCard
-                            key={interest.id}
-                            interest={interest}
-                            processingId={processingId}
-                            onApprove={handleApprove}
-                            onReject={handleReject}
-                            onDelete={handleDelete}
-                            onViewFeedback={handleViewFeedback}
-                            feedbackCount={feedbackCount}
-                          />
-                        )
-                      })}
+                      return (
+                        <SessionInterestCard
+                          key={interest.id}
+                          interest={interest}
+                          processingId={processingId}
+                          onApprove={handleApprove}
+                          onReject={handleReject}
+                          onDelete={handleDelete}
+                          onViewFeedback={handleViewFeedback}
+                          feedbackCount={feedbackCount}
+                        />
+                      )
+                    })}
+
+                    {totalApprovedPages > 1 && (
+                      <Pagination className="pt-2">
+                        <PaginationContent>
+                          <PaginationItem>
+                            <PaginationPrevious
+                              href="#"
+                              onClick={(e) => {
+                                e.preventDefault()
+                                if (currentApprovedPage > 1) handleApprovedPageChange(currentApprovedPage - 1)
+                              }}
+                              className={currentApprovedPage <= 1 ? "pointer-events-none opacity-50" : ""}
+                            />
+                          </PaginationItem>
+
+                          {Array.from({ length: totalApprovedPages }, (_, i) => i + 1)
+                            .filter((page) => {
+                              if (totalApprovedPages <= 7) return true
+                              if (page === 1 || page === totalApprovedPages) return true
+                              if (Math.abs(page - currentApprovedPage) <= 1) return true
+                              return false
+                            })
+                            .map((page, index, arr) => {
+                              const showEllipsisBefore = index > 0 && page - arr[index - 1] > 1
+
+                              return (
+                                <span key={page} className="contents">
+                                  {showEllipsisBefore && (
+                                    <PaginationItem>
+                                      <PaginationEllipsis />
+                                    </PaginationItem>
+                                  )}
+                                  <PaginationItem>
+                                    <PaginationLink
+                                      href="#"
+                                      isActive={page === currentApprovedPage}
+                                      onClick={(e) => {
+                                        e.preventDefault()
+                                        handleApprovedPageChange(page)
+                                      }}
+                                    >
+                                      {page}
+                                    </PaginationLink>
+                                  </PaginationItem>
+                                </span>
+                              )
+                            })}
+
+                          <PaginationItem>
+                            <PaginationNext
+                              href="#"
+                              onClick={(e) => {
+                                e.preventDefault()
+                                if (currentApprovedPage < totalApprovedPages) {
+                                  handleApprovedPageChange(currentApprovedPage + 1)
+                                }
+                              }}
+                              className={currentApprovedPage >= totalApprovedPages ? "pointer-events-none opacity-50" : ""}
+                            />
+                          </PaginationItem>
+                        </PaginationContent>
+                      </Pagination>
+                    )}
                   </div>
                 ) : (
                   <div className="text-center py-8 text-gray-500">No approved sessions</div>

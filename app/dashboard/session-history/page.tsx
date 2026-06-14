@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { createBrowserClient } from "@supabase/auth-helpers-nextjs"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { DashboardHeader } from "@/components/dashboard-header"
@@ -61,7 +61,7 @@ export default function SessionHistoryPage() {
   const [sessions, setSessions] = useState<Session[]>([])
   const router = useRouter()
   const { toast } = useToast()
-  const supabase = createClientComponentClient()
+  const supabase = createBrowserClient()
 
   useEffect(() => {
     const checkSession = async () => {
