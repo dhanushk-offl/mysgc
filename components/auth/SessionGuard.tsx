@@ -2,12 +2,12 @@
 
 import { useEffect } from "react"
 import { useRouter, usePathname } from "next/navigation"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { createBrowserClient } from "@supabase/auth-helpers-nextjs"
 
 export function SessionGuard({ children }: { children: React.ReactNode }) {
     const router = useRouter()
     const pathname = usePathname()
-    const supabase = createClientComponentClient()
+    const supabase = createBrowserClient()
 
     useEffect(() => {
         // Set up a listener for auth state changes

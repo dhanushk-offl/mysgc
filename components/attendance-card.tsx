@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { createBrowserClient } from "@supabase/auth-helpers-nextjs"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { ChevronDown, Calendar, CheckCircle2, XCircle, TrendingUp, Clock } from "lucide-react"
 import { formatDatabaseDate, parseDatabaseDate } from "@/lib/date-utils"
@@ -25,7 +25,7 @@ export function AttendanceCard({ memberId }: AttendanceCardProps) {
   const [selectedMonth, setSelectedMonth] = useState<string>("")
   const [monthlyData, setMonthlyData] = useState<MonthlyAttendanceSummary[]>([])
   const [loading, setLoading] = useState(true)
-  const supabase = createClientComponentClient()
+  const supabase = createBrowserClient()
 
   useEffect(() => {
     if (memberId) {

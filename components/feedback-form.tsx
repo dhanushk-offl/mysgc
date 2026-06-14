@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { createBrowserClient } from "@supabase/auth-helpers-nextjs"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
@@ -41,7 +41,7 @@ export function FeedbackForm({ memberId, todaySessions }: FeedbackFormProps) {
   const [isFeedbackTimeValid, setIsFeedbackTimeValid] = useState(false)
   const [currentTimeStatus, setCurrentTimeStatus] = useState<"before" | "during" | "after">("before")
   
-  const supabase = createClientComponentClient()
+  const supabase = createBrowserClient()
 
   // Get current IST time
   const getISTTime = () => {

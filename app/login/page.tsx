@@ -4,7 +4,7 @@ import type React from "react"
 import { useEffect } from "react"
 import { useRef, useState } from "react"
 import { useRouter } from "next/navigation"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { createBrowserClient } from "@supabase/auth-helpers-nextjs"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -39,7 +39,7 @@ export default function AuthPage() {
   const [isRedirecting, setIsRedirecting] = useState(false)
   const submittingRef = useRef(false)
   const router = useRouter()
-  const supabase = createClientComponentClient()
+  const supabase = createBrowserClient()
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
