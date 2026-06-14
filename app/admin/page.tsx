@@ -109,7 +109,10 @@ export default function AdminPage() {
   const [isSubmittingManual, setIsSubmittingManual] = useState(false)
 
   const router = useRouter()
-  const supabase = createBrowserClient()
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  )
 
   const getHandlersLabel = (primaryName?: string | null, coHandlerName?: string | null) => {
     return coHandlerName ? `${primaryName} & ${coHandlerName}` : primaryName || "Unassigned"
